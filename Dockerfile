@@ -13,7 +13,7 @@ COPY /requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy service code
-COPY ml_service/ .
+COPY / .
 
 EXPOSE 5000
 
