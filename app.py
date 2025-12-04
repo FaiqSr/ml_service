@@ -2,6 +2,14 @@
 Flask API Service untuk Machine Learning Monitoring Kandang Ayam
 Menggunakan model LSTM, Random Forest, dan Isolation Forest
 """
+import os
+# Force TensorFlow / Keras to run on CPU only (disable GPU)
+# This must be set before importing TensorFlow.
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# Reduce TensorFlow log verbosity (0 = all logs, 1 = INFO, 2 = WARNING, 3 = ERROR)
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# Optionally disable oneDNN custom ops to avoid small numerical differences (set to '0' to disable)
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -9,7 +17,6 @@ import numpy as np
 import joblib
 from tensorflow.keras.models import load_model
 import json
-import os
 from datetime import datetime
 import logging
 import time
